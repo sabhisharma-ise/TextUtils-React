@@ -2,23 +2,38 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
 
+    const [text, setText] = useState("");
+
+    const handleOnChange = (event) => {
+        setText(event.target.value);
+    };
+
     const handleUpClick = () => {
-        // console.log("Uppercase button clicked");
         setText((text) => text.toUpperCase());
     };
 
     const handleLoClick = () => {
-        // console.log("Lowercase button clicked");
         setText((text) => text.toLowerCase());
     };
 
-    const handleOnChange = (event) => {
-        // console.log('OnChange');
-        setText(event.target.value);
-    };
+    const handleClearClick = () => {
+        setText('');
+    }
 
-    const [text, setText] = useState("");
+    const handleCopyClick = () => { 
+        navigator.clipboard.writeText(text);
+    }
 
+    const handleSpeakClick = () => {
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        window.speechSynthesis.speak(msg);        
+    }
+
+    const handleCancelSpeech=()=>{
+        speechSynthesis.cancel()
+    }
+    
     return (
         <>
             <div>
@@ -35,6 +50,25 @@ export default function TextForm(props) {
                 <button className="btn btn-primary mx-1" onClick={handleLoClick}>
                     Convert to Lowercase
                 </button>
+
+                <button className="btn btn-primary mx-1" onClick={handleClearClick}>
+                    Clear Text
+                </button>
+
+                <button className="btn btn-primary mx-1" onClick={handleCopyClick}>
+                    Copy to Clipboard
+                </button>
+
+                <br />
+
+                <button className="btn btn-primary mx-1 my-3" onClick={handleSpeakClick}>
+                    Read aloud
+                </button>
+
+                <button className="btn btn-primary mx-1" onClick={handleCancelSpeech}>
+                    Cancel Speech
+                </button>
+                
             </div>
 
             <div className="container my-3">
