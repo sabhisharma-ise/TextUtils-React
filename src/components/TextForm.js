@@ -10,33 +10,40 @@ export default function TextForm(props) {
 
     const handleUpClick = () => {
         setText((text) => text.toUpperCase());
+        props.showAlert("Converted to Uppercase!", "success");
     };
 
     const handleLoClick = () => {
         setText((text) => text.toLowerCase());
+        props.showAlert("Converted to Lowercase!", "success");
     };
 
     const handleExtraSpaces = () => {
         let newText = text.split(/[ ]+/);   // Use of Regex
         setText(newText.join(" "));
+        props.showAlert("Extra Spaces Removed!", "success");
     }
 
     const handleClearClick = () => {
         setText('');
+        props.showAlert("Text Cleared!", "success");
     }
 
     const handleCopyClick = () => { 
         navigator.clipboard.writeText(text);
+        props.showAlert("Copied to Clipboard!", "success");
     }
 
     const handleSpeakClick = () => {
         let msg = new SpeechSynthesisUtterance();
         msg.text = text;
-        window.speechSynthesis.speak(msg);        
+        window.speechSynthesis.speak(msg);
+        props.showAlert("Reading started!", "success");  
     }
 
     const handleCancelSpeech=()=>{
         speechSynthesis.cancel()
+        props.showAlert("Reading stopped!", "success");
     }
     
     return (
