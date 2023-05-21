@@ -16,6 +16,11 @@ export default function TextForm(props) {
         setText((text) => text.toLowerCase());
     };
 
+    const handleExtraSpaces = () => {
+        let newText = text.split(/[ ]+/);   // Use of Regex
+        setText(newText.join(" "));
+    }
+
     const handleClearClick = () => {
         setText('');
     }
@@ -36,7 +41,7 @@ export default function TextForm(props) {
     
     return (
         <>
-            <div>
+            <div className="container" style={{color: props.mode==='light'?'black':'white'}} >
                 <h1>{props.heading}</h1>
 
                 <div className="mb-3">
@@ -50,6 +55,12 @@ export default function TextForm(props) {
                 <button className="btn btn-primary mx-1 my-1" onClick={handleLoClick}>
                     Convert to Lowercase
                 </button>
+
+                <button className="btn btn-primary mx-1 my-1" onClick={handleExtraSpaces}>
+                    Remove Extra Spaces
+                </button>
+
+                <br />
 
                 <button className="btn btn-primary mx-1 my-1" onClick={handleClearClick}>
                     Clear Text
@@ -71,7 +82,7 @@ export default function TextForm(props) {
                 
             </div>
 
-            <div className="container my-3">
+            <div className="container my-3" style={{color: props.mode==='light'?'black':'white'}} >
                 <h2>Your text summary</h2>
 
                 <p>
