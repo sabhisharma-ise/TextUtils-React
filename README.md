@@ -1,4 +1,21 @@
-# Getting Started with Create React App
+# TextUtils
+
+This repository contains the code for a React project that I made during my starting journey of learning React.js. It is a tool for analyzing text and it can provide the following functions:
+
+* Convert to Uppercase
+* Convert to Lowercase
+* Remove Extra Spaces
+* Clear Text
+* Copy to Clipboard
+* Read aloud
+
+## Contributing
+
+We welcome contributions to this project. If you would like to contribute, please fork the repository and submit a pull request.
+
+I hope this helps!
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
